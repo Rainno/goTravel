@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from 'vue-router'
-import './assets/styles/reset.css'
-import './assets/styles/border.css'
+import 'styles/reset.css'
+import 'styles/border.css'
 import fastClick from 'fastclick'
+import 'styles/iconfont.css'
 
 Vue.config.productionTip = false
 // 解决移动端点击延迟300毫秒的问题
