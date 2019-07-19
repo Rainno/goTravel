@@ -5,10 +5,15 @@ import 'styles/reset.css'
 import 'styles/border.css'
 import fastClick from 'fastclick'
 import 'styles/iconfont.css'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+
+// require styles
+import 'swiper/dist/css/swiper.css'
 
 Vue.config.productionTip = false
 // 解决移动端点击延迟300毫秒的问题
 fastClick.attach(document.body)
+Vue.use(VueAwesomeSwiper)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
