@@ -18,6 +18,7 @@
             class="search-item border-bottom"
             v-for="item in list"
             :key="item"
+            @click="handleCityClick(item.name)"
           >
             {{item.name}}
           </li>
@@ -31,6 +32,7 @@
 
 <script>
 import BScroll from 'better-scroll'
+import {mapMutations} from 'vuex'
 export default {
   name: 'CitySearch',
   props: {
@@ -50,6 +52,16 @@ export default {
     hasNoData () {
       return !this.list.length
     }
+  },
+  methods: {
+    handleCityClick (city) {
+      // this.$store.dispatch('changeCity', hotCity)
+      // this.$store.commit('changeCity', city)
+      this.changeCity(city)
+      // vuex的编程式导航，跳转到首页
+      this.$router.push('/')
+    },
+    ...mapMutations(['changeCity'])
   },
   watch: {
     keyword () {
