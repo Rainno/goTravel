@@ -1,6 +1,10 @@
 <template>
     <div class="">
-      <detail-banner></detail-banner>
+      <detail-banner
+        :sightName="sightName"
+        :bannerImg="bannerImg"
+        :gallaryImgs="gallaryImgs"
+      ></detail-banner>
       <detail-header></detail-header>
       <div class="content">
         <detail-list :list="list"></detail-list>
@@ -22,23 +26,10 @@ export default {
   },
   data () {
     return {
-      list: [{
-        title: '成人票',
-        children: [{
-          title: '成人三馆联票',
-          children: [{
-            title: '成人三馆联票-某一连锁店销售'
-          }]
-        }, {
-          title: '成人五馆联票'
-        }]
-      }, {
-        title: '学生票'
-      }, {
-        title: '儿童票'
-      }, {
-        title: '特价票'
-      }]
+      sightName: '',
+      bannerImg: '',
+      gallaryImgs: [],
+      list: []
     }
   },
   mounted () {
@@ -46,16 +37,20 @@ export default {
   },
   methods: {
     getDetailInfo () {
-      axios.get('/api/detail.json')
+      axios.get('/api/detail.json', {
+        params: {
+          id: this.$route.params.id
+        }
+      })
         .then(this.getDetailInfoSuccess)
     },
     getDetailInfoSuccess (res) {
       res = res.data
       if (res.ret && res.data) {
-        // this.swiperList = res.data.swiperList
-      // this.iconList = res.data.iconList
-      // this.recommendList = res.data.recommendList
-      // this.weekendList = res.data.weekendList
+        this.sightName = res.data.sightName
+        this.bannerImg = res.data.bannerImg
+        this.gallaryImgs = res.data.gallaryImgs
+        this.list = res.data.categoryList
       }
     }
   }
