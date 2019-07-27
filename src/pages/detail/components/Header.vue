@@ -37,6 +37,9 @@ export default {
   activated () {
     window.addEventListener('scroll', this.handleScroll)
   },
+  deactivated () {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
   methods: {
     handleScroll: function () {
       const top = document.documentElement.scrollTop
